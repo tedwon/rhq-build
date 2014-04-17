@@ -23,12 +23,12 @@ sudo chkconfig docker on"
 
 #### docker build
 ```
-ssh -t -i ~/.ssh/ec2.pem ec2-user@${EC2_HOSTNAME} "sudo docker --sig-proxy=false -d -i -t rhq-build:4.11.0-SNAPSHOT"
+ssh -t -i ~/.ssh/ec2.pem ec2-user@${EC2_HOSTNAME} "rm -rf rhq-build/; git clone git://github.com/gkhachik/rhq-build.git; cd rhq-build/; sudo docker build -t rhq-build:latest ."
 ```
 
 #### docker run
 ```
-ssh -t -i ~/.ssh/ec2.pem ec2-user@${EC2_HOSTNAME} "sudo docker run --sig-proxy=false -d -i -t rhq-build:4.11.0-SNAPSHOT"
+ssh -t -i ~/.ssh/ec2.pem ec2-user@${EC2_HOSTNAME} "sudo docker run --sig-proxy=false -d -i -t rhq-build:latest"
 ```
 
 #### docker logs -f
