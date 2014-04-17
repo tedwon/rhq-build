@@ -9,7 +9,7 @@ Docker image for building latest RHQ code
 
 #### preparation
 ```
-EC2_HOSTNAME="ec2-54-186-243-205.us-west-2.compute.amazonaws.com"
+export EC2_HOSTNAME="ec2-54-186-243-205.us-west-2.compute.amazonaws.com"
 ```
 
 ```
@@ -33,5 +33,8 @@ ssh -t -i ~/.ssh/ec2.pem ec2-user@${EC2_HOSTNAME} "sudo docker run --sig-proxy=f
 
 #### docker logs -f
 ```
-ssh -t -i ~/.ssh/ec2.pem ec2-user@${EC2_HOSTNAME} "sudo docker logs -f 1e944588f29b36864d3ba407951d6ebb74e3a618d41720747f26766c4c254d0e"
+export DOCKER_CID="1e944588f29b36864d3ba407951d6ebb74e3a618d41720747f26766c4c254d0e"
+```
+```
+ssh -t -i ~/.ssh/ec2.pem ec2-user@${EC2_HOSTNAME} "sudo docker logs -f ${DOCKER_CID}"
 ```
