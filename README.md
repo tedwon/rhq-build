@@ -38,3 +38,5 @@ export DOCKER_CID="1e944588f29b36864d3ba407951d6ebb74e3a618d41720747f26766c4c254
 ```
 ssh -t -i ~/.ssh/ec2.pem ec2-user@${EC2_HOSTNAME} "sudo docker logs -f ${DOCKER_CID}"
 ```
+
+you're abosolutely safe to Ctrl+C anytime (the process will continue on server time ;)
