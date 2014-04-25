@@ -250,7 +250,7 @@
       <properties>
         <!-- Set the below prop to the absolute path of your RHQ trunk dir (e.g. /home/bob/projects/rhq).
              (${rhq.rootDir}/dev-container will be used as the dev container dir) -->
-        <rhq.rootDir>/rhq-maven</rhq.rootDir>
+        <rhq.rootDir>/root/rhq/rhq-build</rhq.rootDir>
         <gwt.userAgent>gecko1_8</gwt.userAgent>
 
         <!-- Enable faster, but less-optimized, gwt compilations. -->
