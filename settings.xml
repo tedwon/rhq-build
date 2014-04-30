@@ -251,7 +251,7 @@
         <!-- Set the below prop to the absolute path of your RHQ trunk dir (e.g. /home/bob/projects/rhq).
              (${rhq.rootDir}/dev-container will be used as the dev container dir) -->
         <rhq.rootDir>/root/rhq/rhq-build</rhq.rootDir>
-        <gwt.userAgent>gecko1_8</gwt.userAgent>
+        <gwt.userAgent>safari,ie8,gecko1_8</gwt.userAgent>
 
         <!-- Enable faster, but less-optimized, gwt compilations. -->
         <gwt.draftCompile>true</gwt.draftCompile>
