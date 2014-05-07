@@ -14,7 +14,7 @@ export PATH=${MAVEN_HOME}/bin:${JAVA_HOME}/bin:${PATH};
 cd /root/rhq/rhq-build
 git clean -xdf
 git fetch origin
-git checkout origin ${RHQ_BRANCH}
+git checkout ${RHQ_BRANCH}
 git pull origin ${RHQ_BRANCH}
 
 # drop DB and init it again
