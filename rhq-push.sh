@@ -1,8 +1,8 @@
 #!/bin/bash
-export RHQ_VERSION=4.12.0-SNAPSHOT
+export RHQ_VERSION=4.11.0
 export MAVEN_MAJOR=3
 export MAVEN_MINOR=2.1
-export RHQ_BRANCH=master
+export RHQ_BRANCH=release-4.11.0
 if [[ $(cat /etc/redhat-release | grep Fedora) ]]; then
   export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk
 else
