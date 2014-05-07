@@ -1,7 +1,9 @@
 #!/bin/bash
-export RHQ_VERSION=4.11.0-SNAPSHOT
+export RHQ_VERSION=4.12.0-SNAPSHOT
 export MAVEN_MAJOR=3
 export MAVEN_MINOR=2.1
+export RHQ_BRANCH=master
+
 if [[ $(cat /etc/redhat-release | grep Fedora) ]]; then
   export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk
 else
@@ -30,7 +32,7 @@ createdb -h 127.0.0.1 -p 5432 -U postgres -O rhqadmin rhqdev
 
 # git clone the repo
 mkdir -p /root/rhq/rhq-build/
-git clone https://github.com/rhq-project/rhq.git /root/rhq/rhq-build
+git clone -b ${RHQ_BRANCH} https://github.com/rhq-project/rhq.git /root/rhq/rhq-build
 cd /root/rhq/rhq-build
 
 # run the mvn build

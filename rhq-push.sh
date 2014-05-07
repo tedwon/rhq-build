@@ -1,5 +1,5 @@
 #!/bin/bash
-export RHQ_VERSION=4.11.0-SNAPSHOT
+export RHQ_VERSION=4.12.0-SNAPSHOT
 export MAVEN_MAJOR=3
 export MAVEN_MINOR=2.1
 export RHQ_BRANCH=master
@@ -12,6 +12,9 @@ export MAVEN_HOME=/opt/apache-maven-3.2.1
 export PATH=${MAVEN_HOME}/bin:${JAVA_HOME}/bin:${PATH};
 
 cd /root/rhq/rhq-build
+git clean -xdf
+git fetch origin
+git checkout origin ${RHQ_BRANCH}
 git pull origin ${RHQ_BRANCH}
 
 # drop DB and init it again
@@ -29,9 +32,10 @@ mvn -Penterprise,dev -Ddbsetup -DskipTests install
 # prepare to upload to sourceforge.com
 rm -f /root/.ssh/id_dsa_rhq_sourceforge*
 mkdir /root/.ssh
-echo -e "\n ** ** SSH_PRIVATE_KEY=[$SSH_PRIVATE_KEY]"
 curl -sSL ${SSH_PRIVATE_KEY} > /root/.ssh/id_dsa_rhq_sourceforge
 chmod 600 /root/.ssh/id_dsa_rhq_sourceforge
-# scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /root/.ssh/id_dsa_rhq_sourceforge -v /root/rhq/rhq-build/modules/enterprise/server/appserver/target/rhq-server-${RHQ_VERSION}.zip -t gkhachik,rhqbuild@shell.sourceforge.net:/home/frs/project/rhqbuild/rhq/rhq-${RHQ_VERSION}/
 
+ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /root/.ssh/id_dsa_rhq_sourceforge gkhachik,rhqbuild@shell.sourceforge.net create
+
+ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /root/.ssh/id_dsa_rhq_sourceforge gkhachik,rhqbuild@shell.sourceforge.net "mkdir -p /home/frs/project/rhqbuild/rhq/rhq-${RHQ_VERSION}"
 rsync -aiv -e "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /root/.ssh/id_dsa_rhq_sourceforge" /root/rhq/rhq-build/modules/enterprise/server/appserver/target/rhq-server-${RHQ_VERSION}.zip gkhachik,rhqbuild@shell.sourceforge.net:/home/frs/project/rhqbuild/rhq/rhq-${RHQ_VERSION}/
